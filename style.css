@@ -63,10 +63,17 @@ button {
   -webkit-text-stroke: 0.5px white;
 }
 .tiles {
+  width: 80px;
+  height: 80px;
+  background: white url("images/puzzle.png") center center no-repeat;
+  background-size: cover;
+  position: absolute;
   cursor: pointer;
+  border: 1px solid black;
 }
-.tiles {
-  background-color: lime;
+.tiles:hover {
+  background: white url("images/puzzle_alternate.png") center center no-repeat;
+  background-size: cover;
 }
 .tiles:first-of-type {
   border-radius: 25% 0 0 0;
@@ -76,6 +83,9 @@ button {
 }
 #inner-container .tiles:nth-child(4) {
   border-radius: 0 25% 0 0;
+}
+#inner-container .tiles:nth-last-child():hover {
+  background-image: url("images/puzzle_hover.png");
 }
 #inner-container .tiles:nth-child(13) {
   border-radius: 0 0 0 25%;
