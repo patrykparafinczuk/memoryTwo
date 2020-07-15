@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Patryk Parafińczuk">
     <title>Memory Two</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
   </head>
@@ -8,10 +12,14 @@
     <div id="outer-container">
       <span>Memory Game</span>
       <div id="inner-container">
-
+        <div id="instruction">
+          <p>Click <span id="start-game-sign">Start Game</span> button <br/>to set tiles on the board</p>
+          <p>Click <span id="reset-game-sign">Reset Game</span> button <br/>to clean the board</p>
+          <p>Here is your <span id="animated-counter">counter</span> <br/> It counts your matched tiles.<br/> After you matched all of them, you won!</p>
+        </div>
       </div>
       <button id="start-game-btn">Start Game</button>
-      <div id="counter">1</div>
+      <div id="counter">0</div>
       <button id="reset-game-btn">Reset Game</button>
     </div>
     <script src="script.js"></script>
