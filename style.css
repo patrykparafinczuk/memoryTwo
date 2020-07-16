@@ -123,3 +123,23 @@ button {
     color: teal;
   }
 }
+#won-caption {
+  width: 250px;
+  height: 50px;
+  position: absolute;
+  top: 170px;
+  left: 75px;
+  line-height: 50px;
+  font-size: 48px;
+  animation: rotateComeIn 1s linear;
+}
+@keyframes rotateComeIn {
+  0% {
+    transform: rotateZ(0deg);
+    font-size: 2px;
+  }
+  100% {
+    transform: rotateZ(360deg);
+    font-size: 48px;
+  }
+}

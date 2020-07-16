@@ -56,6 +56,14 @@ const startGame = () => {
               el.classList.remove("uncovered");
               el.style.backgroundImage = "url('images/puzzle.png')";
             }
+            counter++;
+            counterField.innerText = counter;
+          }
+          if (container.innerHTML === "") {
+            const div = document.createElement("div");
+            div.id = "won-caption";
+            div.textContent = "You won!";
+            container.append(div);
           }
         };
         setTimeout(comparizer,500);
@@ -72,7 +80,6 @@ const resetGame = () => {
   if (!isStarted) {
     return;
   }
-  container.innerHTML = "";
   container.innerHTML = instruction.innerHTML;
   counterField.innerHTML = 0;
   isStarted = false;
