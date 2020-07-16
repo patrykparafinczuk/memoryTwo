@@ -1,4 +1,4 @@
 # memoryTwo
 Newer generation of my previous memory game
 
-Link to app: memorytwo.netlify.app
+Link to app: https://memorytwo.netlify.app
