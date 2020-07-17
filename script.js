@@ -3,6 +3,9 @@ const startGameButton = document.getElementById("start-game-btn");
 const resetGameButton = document.getElementById("reset-game-btn");
 const instruction = document.getElementById("instruction");
 const counterField = document.getElementById("counter");
+const fourOnFourButton = document.getElementById("fourOnFour-btn");
+const fiveOnFourButton = document.getElementById("fiveOnFour-btn");
+const sixOnSixButton = document.getElementById("sixOnSix-btn");
 let valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
 let isStarted = false;
 let counter = 0;
@@ -85,7 +88,27 @@ const resetGame = () => {
   isStarted = false;
 };
 
+const setActiveClass = (btn) => {
+  const arr = document.querySelectorAll(".changeSize");
+  for (const el of arr) {
+    el.classList.remove("active");
+  }
+  switch (btn) {
+    case 0 :
+      fourOnFourButton.classList.add("active");
+      break;
+    case 1 :
+      fiveOnFourButton.classList.add("active");
+      break;
+    case 2 :
+      sixOnSixButton.classList.add("active");
+      break;
+  }
+};
+
 startGameButton.addEventListener("click", startGame);
 resetGameButton.addEventListener("click", resetGame);
-
+fourOnFourButton.addEventListener("click", setActiveClass.bind(this, 0));
+fiveOnFourButton.addEventListener("click", setActiveClass.bind(this, 1));
+sixOnSixButton.addEventListener("click", setActiveClass.bind(this, 2));
 

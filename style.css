@@ -14,10 +14,10 @@ body {
 #outer-container {
   padding-top: 5px;
   width: 470px;
-  height: 520px;
-  position: fixed;
+  height: 580px;
+  position: relative;
   top: 25px;
-  left: 50px;
+  margin: auto;
   background: #CC0000;
   border-radius: 15%;
   text-align: center;
@@ -46,6 +46,7 @@ button {
   font-family: "modak_regular";
   font-size: 22px;
   top: 455px;
+  outline: none;
 }
 #start-game-btn {
   left: 75px;
@@ -62,9 +63,41 @@ button {
 #reset-game-btn:hover {
   color: magenta;
 }
-#start-game-btn:active, #reset-game-btn:active {
-  outline: none;
+#fourOnFour-btn {
+  width: 70px;
+  top: 505px;
+  left: 105px;
+  color: white;
+}
+#fiveOnFour-btn {
+  width: 70px;
+  top: 505px;
+  left: 197px;
+  color: white;
+}
+#sixOnSix-btn {
+  width: 70px;
+  top: 505px;
+  left: 290px;
+  color: white;
+}
+#start-game-btn:active, #reset-game-btn:active, #fourOnFour-btn:active, #fiveOnFour-btn:active, #sixOnSix-btn:active {
   box-shadow: black 2px 2px 3px;
+}
+.active {
+  border: 3px solid magenta;
+  animation: pulse-active 1s infinite linear alternate-reverse;
+}
+@keyframes pulse-active {
+  0% {
+    border-color: magenta;
+  }
+  50% {
+    border-color: yellow;
+  }
+  100% {
+    border-color: magenta;
+  }
 }
 #counter {
   width: 45px;
