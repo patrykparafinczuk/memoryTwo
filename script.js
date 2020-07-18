@@ -9,14 +9,21 @@ const sixOnSixButton = document.getElementById("sixOnSix-btn");
 let valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
 let isStarted = false;
 let counter = 0;
+let mode = "4x4";
+let rowCount = 4;
+let columnCount = 4;
 
-const startGame = () => {
+const startGame = (modeSetted) => {
   container.innerHTML = "";
-  valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
   counter = 0;
   counterField.innerText = 0;
-  for (let i = 0; i < 4; i++) {
-    for (let j = 0; j < 4; j++) {
+  if (modeSetted === "4x4") {
+    valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
+    rowCount = 4;
+    columnCount = 4;
+  }
+  for (let i = 0; i < columnCount; i++) {
+    for (let j = 0; j < rowCount; j++) {
       const tile = document.createElement("div");
       tile.classList.add("tiles");
       container.append(tile);
@@ -79,6 +86,22 @@ const startGame = () => {
   isStarted = true;
 };
 
+const changeMode = (btn) => {
+  switch (btn) {
+    case 0 :
+      mode = "4x4";
+      break;
+    case 1 :
+      mode = "5x4";
+      break;
+    case 2 :
+      mode = "6x6";
+      break;
+    default :
+      mode = "4x4";
+  }
+};
+
 const resetGame = () => {
   if (!isStarted) {
     return;
@@ -106,9 +129,15 @@ const setActiveClass = (btn) => {
   }
 };
 
-startGameButton.addEventListener("click", startGame);
+startGameButton.addEventListener("click", startGame.bind(this, mode));
 resetGameButton.addEventListener("click", resetGame);
+
 fourOnFourButton.addEventListener("click", setActiveClass.bind(this, 0));
+fourOnFourButton.addEventListener("click", changeMode.bind(this, 0));
+
 fiveOnFourButton.addEventListener("click", setActiveClass.bind(this, 1));
+fiveOnFourButton.addEventListener("click", changeMode.bind(this, 1));
+
 sixOnSixButton.addEventListener("click", setActiveClass.bind(this, 2));
+sixOnSixButton.addEventListener("click", changeMode.bind(this, 2));
 
