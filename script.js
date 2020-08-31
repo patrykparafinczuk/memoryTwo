@@ -10,25 +10,29 @@ let valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
 let isStarted = false;
 let counter = 0;
 let mode = "4x4";
+let modeTileCounter = 8;
 let rowCount = 4;
 let columnCount = 4;
 
-const startGame = (modeSetted) => {
+const startGame = () => {
   container.innerHTML = "";
   counter = 0;
   counterField.innerText = 0;
-  if (modeSetted === "4x4") {
-    valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
+  valuePairs = [];
+  if (mode === "4x4") {
     rowCount = 4;
     columnCount = 4;
-  } else if (modeSetted === "5x4") {
-    valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9];
+  } else if (mode === "5x4") {
     rowCount = 5;
     columnCount = 4;
-  } else if (modeSetted === "6x6") {
-    valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14,15,15,16,16,17,17];
+  } else if (mode === "6x6") {
     rowCount = 6;
     columnCount = 6;
+  }
+  for (let i = 0; i < modeTileCounter; i++) {
+    for (let j = 0; j < 2; j++) {
+      valuePairs.push(i);
+    }
   }
   for (let i = 0; i < columnCount; i++) {
     for (let j = 0; j < rowCount; j++) {
@@ -42,7 +46,7 @@ const startGame = (modeSetted) => {
       let idPair;
       let isValidId = true;
       while (isValidId) {
-        const positionSelected = Math.floor(Math.random() * 16);
+        const positionSelected = Math.floor(Math.random() * modeTileCounter * 2);
         idPair = valuePairs[positionSelected];
         if (idPair !== "none") {
           valuePairs[positionSelected] = "none";
@@ -98,15 +102,19 @@ const changeMode = (btn) => {
   switch (btn) {
     case 0 :
       mode = "4x4";
+      modeTileCounter = 8;
       break;
     case 1 :
       mode = "5x4";
+      modeTileCounter = 10;
       break;
     case 2 :
       mode = "6x6";
+      modeTileCounter = 18;
       break;
     default :
       mode = "4x4";
+      modeTileCounter = 8;
   }
 };
 
@@ -137,7 +145,7 @@ const setActiveClass = (btn) => {
   }
 };
 
-startGameButton.addEventListener("click", startGame.bind(this, mode));
+startGameButton.addEventListener("click", startGame);
 resetGameButton.addEventListener("click", resetGame);
 
 fourOnFourButton.addEventListener("click", setActiveClass.bind(this, 0));
