@@ -1,4 +1,5 @@
-const container = document.getElementById("inner-container");
+const outerContainer = document.getElementsByClassName("outer_container")[0];
+const innerContainer = document.getElementsByClassName("inner-container")[0];
 const startGameButton = document.getElementById("start-game-btn");
 const resetGameButton = document.getElementById("reset-game-btn");
 const instruction = document.getElementById("instruction");
@@ -15,7 +16,7 @@ let rowCount = 4;
 let columnCount = 4;
 
 const startGame = () => {
-  container.innerHTML = "";
+  innerContainer.innerHTML = "";
   counter = 0;
   counterField.innerText = 0;
   valuePairs = [];
@@ -38,7 +39,7 @@ const startGame = () => {
     for (let j = 0; j < rowCount; j++) {
       const tile = document.createElement("div");
       tile.classList.add("tiles");
-      container.append(tile);
+      innerContainer.append(tile);
 
       tile.style.top = `${i * 90 + 25}px`;
       tile.style.left = `${j * 90 + 25}px`;
@@ -69,7 +70,7 @@ const startGame = () => {
             return;
           } else if (uncoveredItems[0].id === uncoveredItems[1].id) {
             for (const el of uncoveredItems) {
-              container.removeChild(el);
+              innerContainer.removeChild(el);
             }
             counter++;
             counterField.innerText = counter;
@@ -85,7 +86,7 @@ const startGame = () => {
             const div = document.createElement("div");
             div.id = "won-caption";
             div.textContent = "You won!";
-            container.append(div);
+            innerContainer.append(div);
           }
         };
         setTimeout(comparizer,500);
@@ -107,6 +108,8 @@ const changeMode = (btn) => {
     case 1 :
       mode = "5x4";
       modeTileCounter = 10;
+      outerContainer.classList.add("outer-container-5x4");
+      innerContainer.classList.add("inner-container-5x4")
       break;
     case 2 :
       mode = "6x6";
@@ -122,7 +125,7 @@ const resetGame = () => {
   if (!isStarted) {
     return;
   }
-  container.innerHTML = instruction.innerHTML;
+  innerContainer.innerHTML = instruction.innerHTML;
   counterField.innerHTML = 0;
   isStarted = false;
 };
