@@ -1,5 +1,6 @@
 const outerContainer = document.getElementsByClassName("outer_container")[0];
 const innerContainer = document.getElementsByClassName("inner-container")[0];
+const controls = document.getElementsByClassName("controls")[0];
 const startGameButton = document.getElementById("start-game-btn");
 const resetGameButton = document.getElementById("reset-game-btn");
 const instruction = document.getElementById("instruction");
@@ -7,7 +8,7 @@ const counterField = document.getElementById("counter");
 const fourOnFourButton = document.getElementById("fourOnFour-btn");
 const fiveOnFourButton = document.getElementById("fiveOnFour-btn");
 const sixOnSixButton = document.getElementById("sixOnSix-btn");
-let valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
+//let valuePairs = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7];
 let isStarted = false;
 let counter = 0;
 let mode = "4x4";
@@ -82,7 +83,7 @@ const startGame = () => {
             counter++;
             counterField.innerText = counter;
           }
-          if (container.innerHTML === "") {
+          if (innerContainer.innerHTML === "") {
             const div = document.createElement("div");
             div.id = "won-caption";
             div.textContent = "You won!";
@@ -100,24 +101,33 @@ const startGame = () => {
 };
 
 const changeMode = (btn) => {
-  switch (btn) {
-    case 0 :
-      mode = "4x4";
-      modeTileCounter = 8;
-      break;
-    case 1 :
-      mode = "5x4";
-      modeTileCounter = 10;
-      outerContainer.classList.add("outer-container-5x4");
-      innerContainer.classList.add("inner-container-5x4")
-      break;
-    case 2 :
-      mode = "6x6";
-      modeTileCounter = 18;
-      break;
-    default :
-      mode = "4x4";
-      modeTileCounter = 8;
+  if (!isStarted) {
+    outerContainer.classList.remove("outer-container-4x4", "outer-container-5x4", "outer-container-6x6");
+    innerContainer.classList.remove("inner-container-4x4", "inner-container-5x4", "inner-container-6x6");
+    controls.classList.remove("controls-4x4", "controls-5x4", "controls-6x6");
+    switch (btn) {
+      case 0 :
+        mode = "4x4";
+        modeTileCounter = 8;
+        outerContainer.classList.add("outer-container-4x4");
+        innerContainer.classList.add("inner-container-4x4");
+        controls.classList.add("controls-4x4");
+        break;
+      case 1 :
+        mode = "5x4";
+        modeTileCounter = 10;
+        outerContainer.classList.add("outer-container-5x4");
+        innerContainer.classList.add("inner-container-5x4");
+        controls.classList.add("controls-5x4");
+        break;
+      case 2 :
+        mode = "6x6";
+        modeTileCounter = 18;
+        outerContainer.classList.add("outer-container-6x6");
+        innerContainer.classList.add("inner-container-6x6");
+        controls.classList.add("controls-6x6");
+        break;
+    }
   }
 };
 
@@ -131,20 +141,22 @@ const resetGame = () => {
 };
 
 const setActiveClass = (btn) => {
-  const arr = document.querySelectorAll(".changeSize");
-  for (const el of arr) {
-    el.classList.remove("active");
-  }
-  switch (btn) {
-    case 0 :
-      fourOnFourButton.classList.add("active");
-      break;
-    case 1 :
-      fiveOnFourButton.classList.add("active");
-      break;
-    case 2 :
-      sixOnSixButton.classList.add("active");
-      break;
+  if (!isStarted) {
+    const arr = document.querySelectorAll(".changeSize");
+    for (const el of arr) {
+      el.classList.remove("active");
+    }
+    switch (btn) {
+      case 0 :
+        fourOnFourButton.classList.add("active");
+        break;
+      case 1 :
+        fiveOnFourButton.classList.add("active");
+        break;
+      case 2 :
+        sixOnSixButton.classList.add("active");
+        break;
+    }
   }
 };
 
